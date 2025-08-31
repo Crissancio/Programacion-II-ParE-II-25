@@ -1,3 +1,4 @@
+package Clase2906.java;
 
 
 public class CuentaDeSpotify{
@@ -7,19 +8,20 @@ public class CuentaDeSpotify{
 
     public CuentaDeSpotify(String usuario, String contraseña){
         this.usuario = usuario;
-        this.constraseña = constraseña;
+        this.constraseña = contraseña;
         this.canciones = new String[20];
     }
 
     public CuentaDeSpotify(String usuario, String contraseña, String canciones[]){
         this.usuario = usuario;
-        this.contraseña = constraseña;
+        this.constraseña = contraseña;
         this.canciones = canciones;
     }
 
     public boolean agregarCancion(String cancion){
         boolean esta = false;
         boolean hayEspacio = false;
+        hayEspacio = this.canciones.length == 0?true:false;
         for(int i = 0; i < this.canciones.length; i++){
             if(this.canciones[i] != null){
                 if(this.canciones[i] == cancion){
@@ -49,20 +51,19 @@ public class CuentaDeSpotify{
     }
     
     public void escucharMusica(String cancion){
+        boolean seEncontro = false;
         for(int i = 0; i < this.canciones.length; i++){
             if(this.canciones[i] != null){
                 if(this.canciones[i]==cancion){
-                    System.out.println("Se esta reproduciendo la cancion "+cancion)
-                    break;
-                }else{
-                    System.out.println("No se a encontrado la cancion")
+                    System.out.println("Se esta reproduciendo la cancion "+cancion);
+                    seEncontro = true;
                     break;
                 }
             }
+        
         }
-    }
-    
-    public static void main(String args[]){
-        //CuentaDeSpotify cuenta = new CuentaDeSpotify();
+        if(!seEncontro){
+            System.out.println("No se encontro la canciones");
+        }
     }
 }
