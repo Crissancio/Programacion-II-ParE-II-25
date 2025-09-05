@@ -16,6 +16,12 @@ class Punto:
 
         return Punto(nx. ny)
 
+    def __eq__(self, otro):
+        if(self.x == otro.x and self.y == otro.y):
+            return True
+        else:
+            return Fa
+
     def __str__(self):
         return f"x: {self.x}\ny: {self.y}\n"
     

@@ -22,6 +22,14 @@ public class Punto {
         return new Punto(nx, ny);
     }
 
+    public boolean igual(Punto otro){
+        if(this.x == otro.x && this.y == otro.y){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
 
     public String toString(){
         return "X: "+ this.x + "\nY: "+ this.y;
