@@ -10,6 +10,12 @@ class Punto:
         nuevoPunto = Punto(nuevoX, nuevoY)
         return nuevoPunto
 
+    def __sub__(self, otro):
+        nx = self.x - otro.x
+        ny = self.y - otro.y
+
+        return Punto(nx. ny)
+
     def __str__(self):
         return f"x: {self.x}\ny: {self.y}\n"
     

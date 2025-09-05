@@ -16,6 +16,13 @@ public class Punto {
         return nuevoPunto;
     }
 
+    public Punto restar(Punto otro){
+        float nx = this.x - otro.x;
+        float ny = this.y - otro.y;
+        return new Punto(nx, ny);
+    }
+
+
     public String toString(){
         return "X: "+ this.x + "\nY: "+ this.y;
     }
