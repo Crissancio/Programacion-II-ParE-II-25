@@ -38,3 +38,6 @@ print()
 print(progra)
 print()
 print(empleado)
+
+# Marketing (redSocial)
+# Redes (tipoServidor)
