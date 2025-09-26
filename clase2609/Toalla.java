@@ -9,4 +9,8 @@ public class Toalla extends Producto{
         this.ancho = ancho;
 
     }
+
+    public String toString(){
+        return "Toalla: " + super.toString() + " Largo: " + this.largo + " Ancho: " + this.ancho;
+    }
 }

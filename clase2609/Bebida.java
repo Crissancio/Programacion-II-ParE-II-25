@@ -9,4 +9,8 @@ public class Bebida extends Producto {
         this.contenido = contenido;
         this.gaseosa = gaseosa;
     }
+
+    public String toString() {
+        return "Bebida: " + super.toString() + " Contenido: " + this.contenido + " Gaseosa: " + this.gaseosa;
+    }
 }

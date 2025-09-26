@@ -7,4 +7,7 @@ public class Comida extends Producto{
         super(nombre, precio);
         this.calorias = calorias;
     }
+    public String toString(){
+        return "Comida: " + super.toString() + " Calorias: " + this.calorias;
+    }
 }
