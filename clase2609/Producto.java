@@ -8,4 +8,11 @@ public class Producto{
         this.nombre = nombre;
         this.precio = precio;
     }
+
+    public void mostrar(){
+        System.out.println("Nombre: " + nombre + ", Precio: " + precio);
+    }
+    public String getNombre(){
+        return this.nombre;
+    }
 }

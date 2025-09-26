@@ -5,6 +5,8 @@ class Producto:
     
     def __str__(self):
         return f"Producto: {self.__nombre}, Precio: {self.__precio}"
+    def mostrarInfo(self):
+        print(f"Producto: {self.__nombre}, Precio: {self.__precio}")
 
 class Bebida(Producto):
     def __init__(self, nombre, precio, contenido, gaseosa):
