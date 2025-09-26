@@ -33,3 +33,18 @@ class Etnico(Mapa):
     
     def __str__(self):
         return f"Mapa Étnico en {self.ubicacion} de tamaño {self.tamanio} con grupos étnicos: {self.nroEtnias}, {', '.join(self.etnias)}"
+    
+p1 = Politico("Argentina", 560000, 5)
+g1 = Geografico("Chile", 4600000, 10000)
+e1 = Etnico("Perú", 1280000, 3, ["Aymara", "Quechua", "Mestizo"])
+e2 = Etnico("Brasil", 8500000, 4, ["Blanco", "Negro", "Pardo", "Indígena"])
+e3 = Etnico("Bolivia", 1098581, 2, ["Quechua", "Aymara"])
+
+lista = [p1, g1, e1, e2 ,e3]
+etniaX = "Aymara"
+for mapa in lista:
+    if isinstance(mapa, Etnico):
+        for etnia in mapa.etnias:
+            if etnia == etniaX:
+                print(mapa)
+                break
