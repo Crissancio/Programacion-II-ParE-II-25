@@ -31,3 +31,10 @@ class Zapato(Producto):
     
     def __str__(self):
         return f"{super().__str__()}, Talla: {self.__talla}"
+
+
+b1 = Bebida("Coca Cola", 15.0, 3, True)
+c1 = Comida("Pizza", 250.0, 20)
+z1 = Zapato("Nike", 5000.0, 42)
+b2 = Bebida("Agua", 10.0, 5, False)
+z2 = Zapato("Adidas", 4500.0, 40)
