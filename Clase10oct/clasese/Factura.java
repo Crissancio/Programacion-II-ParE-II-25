@@ -16,4 +16,15 @@ public class Factura {
     public boolean getSePago(){
         return this.sePago;
     }
+    public String getRazonSocial(){
+        return this.razonSocial;
+    }
+
+    public float conseguirTotal(){
+        float total = 0;
+        for(Pedido p: this.pedidos){
+            total = total + p.getTotal();
+        }
+        return total;
+    }
 }

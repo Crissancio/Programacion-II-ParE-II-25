@@ -3,7 +3,9 @@ class Pedido:
         self.__nombre = nom
         self.__cantidad = cant
         self.__precio = precio
-
+    
+    def getTotal(self):
+        return self.__cantidad * self.__precio
 
 class Factura:
     def __init__(self, razon, sepago, pedidos):
@@ -14,6 +16,14 @@ class Factura:
     def getSePago(self):
         return self.__sePago
 
+    def getRazonSocial(self):
+        return self.__razonSocial
+
+    def conseguirTotal(self):
+        total = 0
+        for p in self.__pedidos:
+            total += p.getTotal()
+        return total
 
 class Persona:
     def __init__(self, nom, dir, facturas):
@@ -26,6 +36,23 @@ class Persona:
             if(f.getSePago() == False):
                 return True
         return False
+    
+    def contarFacturasSinPagar(self):
+        cont = 0
+        for f in self.__facturas:
+            if(f.getSePago() == False):
+                cont +=1
+        
+        return cont
+
+    def mostrarTotalDePagoFacturas(self):
+        total = 0
+        print(f"{self.__nombre}")
+        for f in self.__facturas:
+            if(not f.getSePago()):
+                print(f"\t{f.getRazonSocial()}: Total a pagar {f.conseguirTotal()}")
+                total +=f.conseguirTotal()
+        print(f"\t\tTOTAL A PAGAR: {total}")
 
 
 
@@ -36,7 +63,7 @@ pe1.append(Pedido("pizza", 2, 3))
 
 pe2 = []
 pe2.append(Pedido("Piquemacho", 2, 10.0))
-pe2.append(Pedido("Charquecan", 3, 15.0))
+pe2.append(Pedido("Pollo", 3, 15.0))
 
 pe3 = []
 pe3.append(Pedido("Salchipapa", 1, 4.5))
@@ -59,12 +86,12 @@ f1.append(Factura("1325742",True, pe1))
 f1.append(Factura("1325742", False, pe2))
 
 f2 = []
-f2.append(Factura("1325745", True, pe2))
-f2.append(Factura("1325746", False, pe5))
+f2.append(Factura("1325745", False, pe2))
+f2.append(Factura("1325746", False, pe3))
 f2.append(Factura("1325747", True, pe1))
 
 f3 = []
-f3.append(Factura("1325748", True, pe4))
+f3.append(Factura("1325748", False, pe4))
 
 # -------PERSONAS
 
@@ -83,3 +110,19 @@ def ejercicio1(personas):
     print(f"Hay {cont} personas con facturas sin pagar")
 
 ejercicio1(personas)
+
+
+def ejercicio2(personas):
+    cont = 0
+    for p in personas:
+        cont = cont + p.contarFacturasSinPagar()
+    
+    print(f"Hay {cont} facturas sin pagar")
+
+ejercicio2(personas)
+
+def ejercicio4(personas):
+    for p in personas:
+        p.mostrarTotalDePagoFacturas()
+
+ejercicio4(personas)

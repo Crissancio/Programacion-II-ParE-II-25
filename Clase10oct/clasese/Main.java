@@ -35,7 +35,7 @@ public class Main {
         f1.add(new Factura("1325742", false, pe2));
 
         ArrayList<Factura> f2 = new ArrayList<Factura>();
-        f2.add(new Factura("1325745", true, pe2));
+        f2.add(new Factura("1325745", false, pe2));
         f2.add(new Factura("1325746", false, pe5));
         f2.add(new Factura("1325747", true, pe1));
 
@@ -53,8 +53,10 @@ public class Main {
 
 
         ejercicio1(personas);
+        ejercicio2(personas);
 
-
+        //--por persona mostrar el total de pago por factura
+        ejercicio4(personas);
 
     
     }
@@ -68,5 +70,20 @@ public class Main {
         }
 
         System.out.println("HAY "+cont+" personas con facturas Sin Pagar");
+    }
+
+    public static void ejercicio2(ArrayList<Persona> personas){
+        int cont = 0;
+        for(Persona p: personas){
+            cont = cont + p.contarFacturasSinPagar();
+        }
+
+        System.out.println("Hay "+cont+" facturas sin Pagar");
+    }
+
+    public static void ejercicio4(ArrayList<Persona> personas){
+        for(Persona p: personas){
+            p.mostrarTotalDePagoFacturas();
+        }
     }
 }

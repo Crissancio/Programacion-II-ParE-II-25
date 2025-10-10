@@ -10,4 +10,8 @@ public class Pedido{
         this.cantidad = cant;
         this.precio = precio;
     }
+
+    public float getTotal(){
+        return this.cantidad * this.precio;
+    }
 }
