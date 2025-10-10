@@ -10,6 +10,14 @@ public class Main {
         Etnico e2 = new Etnico("Venezuela", 912000, 2, new String[]{"Wayuu", "Warao"});
         Etnico e3 = new Etnico("Bolivia", 324000, 4, new String[]{"Quechua", "Aymara", "Guarani", "Chiquitano"});
 
+
+
+        System.out.println("---------------");
+
+        //System.out.println(p1 instanceof Integer);
+        //System.out.println(g1 instanceof String);
+
+        System.out.println("---------------");
         ArrayList <Mapa> lista = new ArrayList<Mapa>();
         lista.add(p1);
         lista.add(g1);
@@ -33,6 +41,6 @@ public class Main {
                 }
             }
             
-        }}
+        }
     }
 }
