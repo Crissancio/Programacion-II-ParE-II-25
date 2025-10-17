@@ -10,4 +10,8 @@ public class Medicamento {
         this.añoVencimiento = añoVencimiento;
         this.stock = stock;
     }
+
+    public String toString(){
+        return "Medicamento: "+ nombre + ", Tipo: " + tipo + ", Año de Vencimiento: " + añoVencimiento + ", Stock: " + stock;
+    }
 }
