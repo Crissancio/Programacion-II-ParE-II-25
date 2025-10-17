@@ -38,6 +38,30 @@ public class Farmacia {
         }
     }
 
+    public void contarPastillas(){
+        int cont = 0;
+
+        for (Medicamento m: this.medicamentos){
+            if(m.tipo.equals("Pastilla")){
+                cont++;
+            }
+        }
+
+        System.out.println("Cantidad de medicamentos tipo Pastilla: " + cont);
+    }
+
+    public int contarClientesEdadXY(int edadX, int edadY){
+        int cont = 0;
+        for (Cliente c: this.clientes){
+            if(c.edad < edadY && c.edad > edadX){
+                cont ++;
+            }
+        }
+
+        System.out.println("Hay "+cont+ " clientes con edad entre "+ edadX+" y "+edadY);
+        return cont;
+    }
+
 
 
 }

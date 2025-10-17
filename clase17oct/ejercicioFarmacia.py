@@ -44,6 +44,23 @@ class Farmacia:
             if m.tipo == "Jarabe":
                 print(m)
 
+    def contarPastillas(self):
+        cont = 0
+        for m in self.medicamentos:
+            if m.tipo == "Pastilla":
+                cont += 1
+        
+        print(f"Hay {cont} medicamentos de tipo Pastilla")
+
+    def contarClientesEdadXY(self, edadX, edadY):
+        cont = 0
+        for c in self.clientes:
+            if( c.edad < edadY and c.edad > edadX):
+                cont += 1
+
+        print(f"Hay {cont} clientes con edad entre {edadX} y {edadY}")
+        return cont
+
 medis = [
     # Pastillas existentes
     Medicamento("Paracetamol", "Pastilla", 2002, 100),

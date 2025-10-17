@@ -2,6 +2,7 @@ package clases;
 
 import java.util.ArrayList;
 
+
 public class Main {
     public static void main(String[] args) {
         
@@ -53,9 +54,9 @@ public class Main {
         medis.add(new Medicamento("Heparina", "Inyectable", 2020, 520));
         medis.add(new Medicamento("Morfina", "Inyectable", 2021, 580));
         
-        Farmacia farmacia = new Farmacia("Farmacia Saludable",medis,clien, trab);
 
-        farmacia.agregarCliente(new Cliente("Jose Armando", 18));
+        Farmacia f = new Farmacia("W", medis, clien, trab);
+        
     
     }
 }
