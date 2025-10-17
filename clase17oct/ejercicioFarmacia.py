@@ -15,3 +15,9 @@ class Medicamento:
         self.añoVencimiento = añoVencimiento
         self.stock = stock
 
+class Farmacia:
+    def __init__(self, nom, medicamentos, clientes, trabajadores):
+        self.nom = nom
+        self.medicamentos = medicamentos
+        self.clientes = clientes
+        self.trabajadores = trabajadores
