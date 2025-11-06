@@ -25,10 +25,6 @@ public class Usuario {
         return playlists;
     }
 
-    public void agregarPlaylist(Playlist p) {
-        playlists.add(p);
-    }
-
     public void mostrar() {
         System.out.println("Usuario [" + idUser + "] " + nomUser);
         if (playlists.isEmpty()) {

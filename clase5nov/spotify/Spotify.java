@@ -15,6 +15,15 @@ public class Spotify {
         this.canciones = new ArrayList<>();
     }
 
+    public Spotify(ArrayList<Artista> artista, ArrayList<Usuario> usuarios, ArrayList<Album> albums,
+            ArrayList<Cancion> canciones) {
+
+        this.artistas = artista;
+        this.albums = albums;
+        this.usuarios = usuarios;
+        this.canciones = canciones;
+    }
+
     public ArrayList<Artista> getArtistas() {
         return artistas;
     }

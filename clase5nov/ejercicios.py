@@ -111,8 +111,7 @@ class Usuario:
     def get_playlists(self):
         return self.__playlists
 
-    def agregar_playlist(self, playlist):
-        self.__playlists.append(playlist)
+    
 
     def mostrar(self):
         print(f"Usuario [{self.__idUser}] {self.__nomUser}")
@@ -124,11 +123,11 @@ class Usuario:
 
 
 class Spotify:
-    def __init__(self):
-        self.__artistas = []
-        self.__usuarios = []
-        self.__albums = []
-        self.__canciones = []
+    def __init__(self, arts= [], users = [], albums = [], canciones = []):
+        self.__artistas = arts
+        self.__usuarios = users
+        self.__albums = albums
+        self.__canciones = canciones
 
     def get_artistas(self):
         return self.__artistas
