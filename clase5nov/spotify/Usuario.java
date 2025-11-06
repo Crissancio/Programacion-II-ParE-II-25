@@ -25,6 +25,11 @@ public class Usuario {
         return playlists;
     }
 
+    public void crearPLaylist(String nom) {
+        int idNUevo = this.playlists.size() + 1;
+        this.playlists.add(new Playlist(idNUevo, nom));
+    }
+
     public void mostrar() {
         System.out.println("Usuario [" + idUser + "] " + nomUser);
         if (playlists.isEmpty()) {
@@ -32,6 +37,12 @@ public class Usuario {
         } else {
             for (Playlist p : playlists)
                 p.mostrar();
+        }
+    }
+
+    public void mostrarNombresPlayList() {
+        for (Playlist p : this.playlists) {
+            System.out.println("\t" + p.getNomPlay());
         }
     }
 }

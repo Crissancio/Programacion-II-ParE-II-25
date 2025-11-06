@@ -24,16 +24,11 @@ public class Main {
         Usuario u2 = new Usuario(2, "Ademar");
 
         // === PLAYLISTS ===
-        Playlist p1 = new Playlist(1, "Favoritas");
-        p1.agregarCancion(1);
-        p1.agregarCancion(3);
-
-        Playlist p2 = new Playlist(2, "Para entrenar");
-        p2.agregarCancion(2);
 
         // Asignar playlists a usuarios
-        u1.agregarPlaylist(p1);
-        u2.agregarPlaylist(p2);
+        u1.crearPLaylist("Favoritas");
+        u1.crearPLaylist("N-Word");
+        u2.crearPLaylist("Para entrenar");
 
         // === AGREGAR TODO A SPOTIFY ===
         app.agregarArtista(a1);
@@ -42,15 +37,45 @@ public class Main {
         app.agregarAlbum(al1);
         app.agregarAlbum(al2);
         app.agregarAlbum(al3);
+        app.agregarAlbum(new Album(4, "YHLQMDLG", 1, 2020, 999900000));
 
         app.agregarCancion(c1);
         app.agregarCancion(c2);
         app.agregarCancion(c3);
+        app.agregarCancion(new Cancion(4, "La Zona", 4, 1));
+        app.agregarCancion(new Cancion(5, "Si Veo a Tu Mama", 4, 1));
 
         app.agregarUsuario(u1);
         app.agregarUsuario(u2);
 
+        app.agregarCancionUserXPlayListY("Cristhian", "Favoritas", 1);
+        app.agregarCancionUserXPlayListY("Cristhian", "Favoritas", 3);
+        app.agregarCancionUserXPlayListY("Ademar", "Para entrenar", 1);
+        app.agregarCancionUserXPlayListY("Ademar", "Para entrenar", 2);
+        app.agregarCancionUserXPlayListY("Ademar", "Para entrenar", 3);
+        app.agregarCancionUserXPlayListY("Ademar", "Para entrenar", 5);
+        app.agregarCancionUserXPlayListY("Ademar", "Para entrenar", 4);
+
         // === MOSTRAR TODO ===
         app.mostrar();
+
+        System.out.println("\t\tb======================");
+        app.mostrarAlbumesArtistaX("Bad Bunny");
+
+        System.out.println("\t\tC)======================");
+        app.mostrarCancionesAlbumX("YHLQMDLG");
+
+        System.out.println("\t\tD)======================");
+        app.mostrarCancionesInfoCompleta();
+        System.out.println("\t\tE)======================");
+        app.mostrarNombresPlayListUserX("Cristhian");
+
+        System.out.println("\t\tF)======================");
+        app.mostrarUsuariosEscucharonCancionX("N95");
+        System.out.println("\t\tG)======================");
+        app.mostrarArtistaConMasOyentes();
+
+        System.out.println("\t\tH)======================");
+        app.mostrarPLaylistUserX("Ademar");
     }
 }

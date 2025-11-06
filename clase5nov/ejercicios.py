@@ -111,8 +111,27 @@ class Usuario:
     def get_playlists(self):
         return self.__playlists
 
+    def crearPlaylist(self, nom):
+        idNuevo = len(self.__playlists) + 1
+        self.__playlists.append(Playlist(idNuevo, nom))
     
-
+    def agregarCancionPlaylistX(self, play, idCan):
+        for p in self.__playlists:
+            if(p.get_nomPlay() == play):
+                p.agregar_cancion(idCan)
+    
+    def escucho_cancion_id(self, idCan):
+        for play in self.__playlists:
+            if idCan in play.get_canciones():
+                return True
+            """
+            for c in play.getC_canciones():
+                if(c == idCan):
+                return True
+            return Dalse
+            """
+        return False
+    
     def mostrar(self):
         print(f"Usuario [{self.__idUser}] {self.__nomUser}")
         if not self.__playlists:
@@ -153,6 +172,120 @@ class Spotify:
     def agregar_cancion(self, cancion):
         self.__canciones.append(cancion)
 
+    def agregarCancionUserXPlaListY(self, nom, play, idCan):
+        for user in self.__usuarios:
+            if user.get_nomUser() == nom:
+                user.agregarCancionPlaylistX(play, idCan)
+    def mostrar_albumes_artista_X(self, nom):
+        for a in self.__artistas:
+            if a.get_nomArt() == nom:
+                print(nom)
+                for alb in self.__albums:
+                    if(alb.get_idArt() == a.get_idArt()):
+                        print(f"\t{alb.get_nomAlb()}")
+                        
+    # c) muestra todas las canciones del album X
+
+    def mostrar_canciones_album_X(self, nom):
+        for a in self.__albums:
+            if(a.get_nomAlb() == nom):
+                for c in self.__canciones:
+                    if(c.get_idAlb() == a.get_idAlb()):
+                        print(f"\t{c.get_nomCan()}")
+                        
+
+    def conseguir_artista_por_nombre(self, nom):
+        for a in self.__canciones:
+            if(a.get_nomArt() == nom):
+                return a.get_idArt()
+        return -1
+
+    def conseguir_artista_por_id(self, id):
+        for a in self.__artistas:
+            if(a.get_idArt() == id):
+                return a
+        return None
+
+    def conseguir_abum_por_id(self, id):
+        for a in self.__albums:
+            if(a.get_idAlb() == id):
+                return a
+        return None
+    # d) muestra todas las canciones con informacion completa (nombre, album, artista)
+    
+    def mostrar_canciones_info_completa(self):
+        for cancion in self.__canciones:
+            art = self.conseguir_artista_por_id(cancion.get_idArt())
+            alb = self.conseguir_abum_por_id(cancion.get_idAlb())
+            if(art != None and alb != None):
+                print(f"{cancion.get_nomCan()} - {art.get_nomArt()} - {alb.get_nomAlb()}")
+    
+    # e) muestra el nombre de las playlist el usuario X
+    
+    def mostrar_nombres_playlists_user_X(self, nom):
+        for user in self.__usuarios:
+            if(user.get_nomUser() == nom):
+                print(f"Usuario: {nom}")
+                for p in user.get_playlists():
+                    print(f"\t{p.get_nomPlay()}")
+    
+    # f) muestra que usuarios escucharon la cancion con nombre X
+    def mostrar_usuarios_escucharon_cancion_X(self, nomCan):
+        id = -1
+        for cancion in self.__canciones:
+            if(cancion.get_nomCan() == nomCan):
+                id = cancion.get_idCan()
+        
+        if(id != -1):
+            print(f"Escucharon la Cancion {nomCan}")
+            for user in self.__usuarios:
+                if (user.escucho_cancion_id(id)):
+                    print(f"\t{user.get_nomUser()}")
+    
+    # g) muestra al artista con mas oyentes
+    def oyentesTotalesArtista(self, idArt):
+        total = 0
+        for a in self.__albums:
+            if(a.get_idArt() == idArt):
+                total += a.get_cantOyen()
+        return total
+
+    def mostrar_artista_mas_oyentes(self):
+        artMay = self.__artistas[0]
+        mayor = self.oyentesTotalesArtista(artMay.get_idArt())
+        
+        for a in self.__artistas:
+            cantOye = self.oyentesTotalesArtista(a.get_idArt())
+            if(cantOye > mayor):
+                mayor = cantOye
+                artMay = a
+
+        print(f"{artMay.get_nomArt()} tiene {mayor} oyentes")
+    
+    # h) del usuario de nombre X muestra, todas sus playlist y sus 
+    # canciones (nombre, album, artista)
+    
+    def conseguir_cancion_por_id(self, idCan):
+        for cancion in self.__canciones:
+            if (cancion.get_idCan() == idCan):
+                return cancion
+        return None
+    
+    def mostrar_playlist_user_X(self, nomUser):
+        for user in self.__usuarios:
+            if(user.get_nomUser() == nomUser):
+                print(f"Playlists del Usuario: {nomUser}")
+                for play in user.get_playlists():
+                    print(f"\tPLaylist: {play.get_nomPlay()}")
+                    for idCan in play.get_canciones():
+                        cancion = self.conseguir_cancion_por_id(idCan)
+                        if(cancion != None):
+                            art = self.conseguir_artista_por_id(cancion.get_idArt())
+                            alb = self.conseguir_abum_por_id(cancion.get_idAlb())
+                            print(f"\t\t{cancion.get_nomCan()} - {art.get_nomArt()} - {alb.get_nomAlb()}")
+    
+    
+    
     def mostrar(self):
         print("=== SPOTIFY ===")
 
@@ -165,8 +298,12 @@ class Spotify:
             a.mostrar()
 
         print("\nCANCIONES:")
-
-
+        for a in self.__canciones:
+            a.mostrar()
+        
+        print("\nUSUARIOS:")
+        for a in self.__usuarios:
+            a.mostrar()
 app = Spotify()
 
 # === ARTISTAS ===
@@ -188,15 +325,10 @@ u1 = Usuario(1, "Cristhian")
 u2 = Usuario(2, "Ademar")
 
 # === PLAYLISTS ===
-p1 = Playlist(1, "Dude")
-p1.agregar_cancion(1)
-p1.agregar_cancion(3)
-
-p2 = Playlist(2, "Para entrenar")
-p2.agregar_cancion(2)
-
-u1.agregar_playlist(p1)
-u2.agregar_playlist(p2)
+u1.crearPlaylist("Dude")
+u1.crearPlaylist("Perreo")
+u2.crearPlaylist("Para entrenar")
+u2.crearPlaylist("Musica de Lo-Fi")
 
 # === AGREGAR A SPOTIFY ===
 app.agregar_artista(a1)
@@ -205,13 +337,44 @@ app.agregar_artista(a2)
 app.agregar_album(al1)
 app.agregar_album(al2)
 app.agregar_album(al3)
+app.agregar_album(Album(4, "YHLQMDLG", 1, 2020, 999900000))
 
 app.agregar_cancion(c1)
 app.agregar_cancion(c2)
 app.agregar_cancion(c3)
+app.agregar_cancion(Cancion(4, "La Zona", 4, 1))
+app.agregar_cancion(Cancion(5, "Si Veo a Tu Mama", 4, 1))
 
 app.agregar_usuario(u1)
 app.agregar_usuario(u2)
 
+
+app.agregarCancionUserXPlaListY("Cristhian","Dude", 1)
+app.agregarCancionUserXPlaListY("Cristhian","Dude", 3)
+app.agregarCancionUserXPlaListY("Ademar","Para entrenar", 2)
+app.agregarCancionUserXPlaListY("Ademar","Para entrenar", 1)
+app.agregarCancionUserXPlaListY("Cristhian","Perreo", 4)
+app.agregarCancionUserXPlaListY("Cristhian","Perreo", 5)
+app.agregarCancionUserXPlaListY("Cristhian","Perreo", 1)
+
 # === MOSTRAR TODO ===
 app.mostrar()
+
+print("\t\tINSCISO B)")
+app.mostrar_albumes_artista_X("Kendrick Lamar")
+print("\t\tINSCISO C)")
+app.mostrar_canciones_album_X("Mr. Morale & The Big Steppers")
+print("\t\tINSCISO D)")
+app.mostrar_canciones_info_completa()
+
+print("\t\tINSCISO E)")
+app.mostrar_nombres_playlists_user_X("Ademar")
+
+print("\t\tINSCISO F)")
+app.mostrar_usuarios_escucharon_cancion_X("N95")
+
+print("\t\tINSCISO G)")
+app.mostrar_artista_mas_oyentes()
+
+print("\t\tINSCISO H)")
+app.mostrar_playlist_user_X("Cristhian")
