@@ -95,4 +95,32 @@ public class Veterinaria {
             }
         }
     }
+
+    // D) Mostrar a todas las mascotas que tiene dueños que viven en la zonaX
+    public void inscisoD(String zonaX) {
+        for (Mascota m : this.mascotas) {
+            Dueño d = this.conseguirDueñoPorId(m.getIdDue());
+            try {
+                if (d.getZona().equals(zonaX)) {
+                    System.out.println("\t" + m.getNomMas());
+                }
+            } catch (NullPointerException e) {
+                continue;
+            }
+        }
+    }
+
+    // Mostrar a las mascotas de tipoX y el nombre de su dueño
+    public void inscisoC(String tipo) {
+        for (Mascota m : this.mascotas) {
+            if (m.getTipo().equals(tipo)) {
+                try {
+                    Dueño d = this.conseguirDueñoPorId(m.getIdDue());
+                    System.out.println(d.getNomDue() + "  es dueño de " + m.getNomMas());
+                } catch (NullPointerException e) {
+                    System.out.println(m.getNomMas() + "  no tiene dueño :c");
+                }
+            }
+        }
+    }
 }

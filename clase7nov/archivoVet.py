@@ -13,6 +13,9 @@ class Dueño:
     def get_nomDue(self):
         return self.__nomDue
     
+    def get_zona(self):
+        return self.__zona
+    
 class Mascota:
     def __init__(self, id, nom, tipo, dueño):
         self.__idMas = id
@@ -28,6 +31,9 @@ class Mascota:
 
     def get_idDue(self):
         return self.__idDue
+    
+    def get_tipoMas(self):
+        return self.__tipoMas
     
 class Trabajador:
     def __init__(self, id, nom, turno):
@@ -93,8 +99,27 @@ class Veterinaria:
             for m in self.__mascotas:
                 if(m.get_idDue() == d.get_idDue()):
                     m.mostrar()
-        
-
+    
+    def incisoC(self, tipo):
+        for mascota in self.__mascotas:
+            if mascota.get_tipoMas() == tipo:
+                try:
+                    d = self.conseguir_dueño_por_id(mascota.get_idDue())
+                    print(f"{d.get_nomDue()} es dueño de {mascota.get_nomMas()}")
+                except AttributeError:
+                    print(f"{mascota.get_nomMas()} no tiene dueño")
+    
+    
+    # // D) Mostrar a todas las mascotas que tiene dueños que viven en la zonaX
+    def inscisoD(self, zonaX):
+        for m in self.__mascotas:
+            try:
+                d = self.conseguir_dueño_por_id(m.get_idDue())
+                if(d.get_zona() == zonaX):
+                    print(f"\t{m.get_nomMas()}")
+            
+            except AttributeError:
+                pass
 vet = Veterinaria("Santa Lucia",[],[],[])
 
 vet.agregar_trabajador(Trabajador(1,"Jose", "Noche"))
@@ -107,6 +132,7 @@ vet.agregar_cliente(Dueño(3, "Tadeo", "Sopocachi", "6 de Agosto"))
 vet.agregar_mascota(Mascota(11, "Tarzan", "Mono",2))
 vet.agregar_mascota(Mascota(22, "Federico", "Loro", 2))
 vet.agregar_mascota(Mascota(33, "Max", "Perro", 3))
+vet.agregar_mascota(Mascota(66, "Jorge", "Perro", 0))
 vet.agregar_mascota(Mascota(44, "Lulu", "Gato", 1))
 vet.agregar_mascota(Mascota(55, "Marshall", "Perro", 3))
 vet.agregar_mascota(Mascota(66, "Peñanieto", "Perro", 0))
@@ -117,4 +143,12 @@ vet.mostrar()
 vet.mostrar_dueño_mascota_x("Max")
 print("INSICO B)==========")
 vet.mostrar_dueños_y_mascotas()
-# Mostrar a las mascotas de tipoX y el nombre de su dueño
+
+"""
+Mostrar a las mascotas de tipoX y el nombre de su dueño
+"""
+print("INSICO C==========")
+vet.incisoC("Perro")
+
+print("INSICO D==========")
+vet.inscisoD("16 de Julio")

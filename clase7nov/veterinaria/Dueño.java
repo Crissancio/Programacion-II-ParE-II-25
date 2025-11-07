@@ -22,4 +22,8 @@ class Dueño {
     public String getNomDue() {
         return this.nomDue;
     }
+
+    public String getZona() {
+        return this.zona;
+    }
 }

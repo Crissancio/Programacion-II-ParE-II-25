@@ -26,4 +26,8 @@ public class Mascota {
     public int getIdMas() {
         return this.idMas;
     }
+
+    public String getTipo() {
+        return this.tipo;
+    }
 }

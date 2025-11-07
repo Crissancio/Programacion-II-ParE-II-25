@@ -24,5 +24,12 @@ public class Main {
         vet.mostrarDueñoMascotaX("Peñanieto");
         System.out.println("INSICO B)==========");
         vet.mostrarDueñosYMascotas();
+        System.out.println("INSICO C)==========");
+        vet.inscisoC("Perro");
+        // Mostrar a todas las mascotas que tiene dueños que viven en la zonaX
+        System.out.println("INSICO D)==========");
+        vet.inscisoD("Senkata");
+
     }
+
 }
