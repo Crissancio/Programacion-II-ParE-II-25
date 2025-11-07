@@ -10,4 +10,20 @@ public class Mascota {
         this.tipo = tipo;
         this.idDue = due;
     }
+
+    public void mostrar() {
+        System.out.println("\t" + nomMas + " - " + this.tipo + " - " + idDue);
+    }
+
+    public String getNomMas() {
+        return this.nomMas;
+    }
+
+    public int getIdDue() {
+        return this.idDue;
+    }
+
+    public int getIdMas() {
+        return this.idMas;
+    }
 }

@@ -9,4 +9,8 @@ public class Trabajador {
         this.nomTra = nom;
         this.turno = turno;
     }
+
+    public void mostrar() {
+        System.out.println("\t" + nomTra + " - " + turno);
+    }
 }

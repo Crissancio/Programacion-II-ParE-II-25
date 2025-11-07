@@ -11,4 +11,15 @@ class Dueño {
         this.calle = calle;
     }
 
+    public void mostrar() {
+        System.out.println("\t" + nomDue + " - " + this.calle + "/" + this.zona);
+    }
+
+    public int getIdDue() {
+        return this.idDue;
+    }
+
+    public String getNomDue() {
+        return this.nomDue;
+    }
 }
