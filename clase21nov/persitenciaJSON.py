@@ -39,6 +39,7 @@ class Mascota:
         self.nombre = nombre
         self.especie = especie
         self.edad = edad
+        
     def mostrar(self):
         print("MASCOTA:", self.nombre, self.edad, self.especie)
     
@@ -49,17 +50,20 @@ class Mascota:
             "esepcie": self.especie
         }
         try:
+            # w - write = escritura
+            # r - read = lectura            
             with open("mascota.json", "w") as f:
                 json.dump(datos, f)
         except IOError as e:
             print("Error al escribir el archivo:", e)
     
     def cargarArchivo(self, ruta):
-        datos = {}
         try:
-            with open("persona.json", "r") as f:
-                persona = json.load(f)
-            print("Nombre:", persona["nombre"])
+            with open(ruta, "r") as f:
+                mascota = json.load(f)
+                self.nombre = mascota["nombre"]
+                self.edad = mascota["edad"]
+                self.especie = mascota["especie"]
         except FileNotFoundError:
             print("El archivo no existe")
         except json.JSONDecodeError:
@@ -94,3 +98,12 @@ ruta = "/workspaces/Programacion-II-ParE-II-25/persona.json"
 p1 = Persona()
 p1.crearDesdeArchivo(ruta)
 p1.mostrar()
+print("--------------MASCOTA")
+m = Mascota("Tarzan", "Perro", 5)
+m.mostrar()
+m.guardarArchivo()
+
+ruta = "/workspaces/Programacion-II-ParE-II-25/mascotaPrueba.json"
+m1 = Mascota()
+m1.cargarArchivo(ruta)
+m1.mostrar()

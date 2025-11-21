@@ -1,5 +1,5 @@
 from dataclasses import dataclass, asdict
-import json
+import  json
 
 @dataclass
 class Persona:
@@ -9,7 +9,7 @@ class Persona:
 p = Persona("Luis", 22)
 
 try:
-    with open("persona.json", "w") as f:
+    with open("persona1.json", "w") as f:
         json.dump(asdict(p), f)
 except Exception as e:
     print("Error:", e)
