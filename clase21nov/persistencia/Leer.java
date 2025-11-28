@@ -7,8 +7,9 @@ public class Leer {
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("persona.ser"))) {
             Persona p = (Persona) ois.readObject();
             System.out.println("Objeto leído");
+            p.mostrar();
         } catch (IOException | ClassNotFoundException e) {
-            System.out.println("Error: " + e.getMessage());
+            System.out.println("Error RARO: " + e.getMessage());
         }
     }
 }
